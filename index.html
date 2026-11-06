@@ -3,55 +3,52 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#07010f">
+<meta name="theme-color" content="#000000">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Neon Markets">
+<meta name="apple-mobile-web-app-title" content="Markets">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Neon Markets</title>
+<title>Markets</title>
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1'/%3E%3C/svg%3E">
 <script src="https://s3.tradingview.com/tv.js"></script>
 <style>
-:root{--bg:#07010f;--panel:#0d0420;--cy:#00f0ff;--mg:#ff2a6d;--ye:#f9f002;--tx:#d7f9ff;--mut:#7a6a99;--line:#2b1450}
+:root{--bg:#000;--panel:#0a0a0a;--line:#1f1f1f;--tx:#f2f2f2;--mut:#8a8a8a;--ac:#fff}
+:root[data-theme=light]{--bg:#fff;--panel:#f5f5f5;--line:#e2e2e2;--tx:#0a0a0a;--mut:#6b6b6b;--ac:#000}
 [hidden]{display:none!important}
 *{box-sizing:border-box;margin:0}
 html,body{height:100%;overflow:hidden;overscroll-behavior:none}
-body{position:fixed;inset:0;height:100dvh;display:flex;flex-direction:column;background:var(--bg);color:var(--tx);font-family:Rajdhani,"Segoe UI",system-ui,sans-serif;font-size:16px;font-weight:500;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
-header,aside{background:var(--panel);background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px)}
-header{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;border-bottom:1px solid var(--cy);box-shadow:0 0 14px rgba(0,240,255,.35);position:relative;z-index:2}
-.logo{font-family:Orbitron,Rajdhani,sans-serif;font-weight:700;font-size:16px;letter-spacing:.14em;color:var(--cy);text-shadow:2px 0 var(--mg),-2px 0 var(--ye),0 0 12px var(--cy);animation:glitch 3.2s steps(1) 1}
-.logo i{font-style:normal;color:var(--mg);text-shadow:0 0 10px var(--mg)}
-@keyframes glitch{0%,90%,100%{transform:none}92%{transform:translate(-3px,1px) skewX(8deg)}94%{transform:translate(3px,-1px)}96%{transform:translate(-2px,0) skewX(-6deg)}}
-button{font:inherit;color:var(--cy);background:transparent;border:1px solid var(--cy);padding:5px 12px;cursor:pointer;text-transform:uppercase;letter-spacing:.08em;font-weight:600;transition:background .15s,box-shadow .15s}
-button:hover{background:rgba(0,240,255,.12);box-shadow:0 0 10px rgba(0,240,255,.5)}
-button:focus-visible{outline:2px solid var(--ye);outline-offset:2px}
+body{position:fixed;inset:0;height:100dvh;display:flex;flex-direction:column;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:15px;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+header{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 14px;border-bottom:1px solid var(--line);background:var(--panel)}
+.logo{font-weight:700;letter-spacing:.04em}
+.btns{display:flex;gap:8px}
+button{font:inherit;color:var(--tx);background:transparent;border:1px solid var(--line);border-radius:6px;padding:6px 12px;cursor:pointer}
+button:hover{background:var(--line)}
+button:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
 main{flex:1;display:flex;min-height:0}
-aside{width:210px;flex:none;border-right:1px solid var(--line);overflow-y:auto}
-.item{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid var(--line);padding:12px 14px;color:var(--tx);text-transform:none;letter-spacing:.03em;font-size:17px}
-.item small{display:block;color:var(--mut);font-size:13px;margin-top:1px;letter-spacing:.06em}
-.item.on{color:var(--cy);background:linear-gradient(90deg,rgba(0,240,255,.16),transparent);box-shadow:inset 3px 0 var(--mg);text-shadow:0 0 10px rgba(0,240,255,.8)}
-.item.on small{color:var(--mg)}
-#chartwrap{flex:1;min-width:0;position:relative;background:var(--bg)}
-#tv{position:absolute;inset:0}
-#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--panel);border:1px solid var(--ye);color:var(--ye);padding:10px 16px;z-index:9;max-width:90vw;text-align:center}
+aside{width:200px;flex:none;background:var(--panel);border-right:1px solid var(--line);overflow-y:auto}
+.item{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:12px 14px}
+.item small{display:block;color:var(--mut);margin-top:2px;font-size:12px}
+.item.on{background:var(--line);box-shadow:inset 3px 0 var(--ac);font-weight:600}
+#chartwrap{flex:1;min-width:0;position:relative;background:var(--bg);touch-action:none}
+#tv,#tv iframe{position:absolute;inset:0;touch-action:none}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--panel);border:1px solid var(--line);padding:10px 16px;border-radius:8px;z-index:9;max-width:90vw;text-align:center}
 @media(max-width:700px){
   main{flex-direction:column}
-  aside{width:100%;display:flex;overflow-x:auto;overflow-y:hidden;border-right:0;border-bottom:1px solid var(--line)}
-  .item{width:auto;flex:none;white-space:nowrap;border-bottom:0;border-right:1px solid var(--line);padding:9px 14px}
+  aside{width:100%;display:flex;overflow-x:auto;overflow-y:hidden;border-right:0;border-bottom:1px solid var(--line);flex:none;touch-action:pan-x}
+  .item{width:auto;flex:none;white-space:nowrap;border-bottom:0;border-right:1px solid var(--line);padding:10px 14px}
   .item small{display:none}
-  .item.on{box-shadow:inset 0 -3px var(--mg);background:linear-gradient(0deg,rgba(0,240,255,.16),transparent)}
+  .item.on{box-shadow:inset 0 -3px var(--ac)}
 }
-@media(prefers-reduced-motion:reduce){.logo{animation:none}}
 </style>
 </head>
 <body>
 <header>
-  <span class="logo">NEON<i>//</i>MARKETS</span>
-  <button id="install" hidden>Install app</button>
+  <span class="logo">MARKETS</span>
+  <div class="btns">
+    <button id="install" hidden>Install app</button>
+    <button id="theme">Light</button>
+  </div>
 </header>
 <main>
   <aside id="list"></aside>
@@ -69,36 +66,42 @@ const PAIRS=[
   {n:'USDJPY',d:'Dollar / Yen',s:'OANDA:USDJPY'}
 ];
 const $=id=>document.getElementById(id);
-let cur=PAIRS[2].s;
-try{const v=localStorage.getItem('sym');if(PAIRS.some(p=>p.s===v))cur=v}catch{}
+let cur=PAIRS[2].s,theme='dark';
+try{
+  const v=localStorage.getItem('sym');if(PAIRS.some(p=>p.s===v))cur=v;
+  const t=localStorage.getItem('theme');if(t==='light'||t==='dark')theme=t;
+}catch{}
+const save=()=>{try{localStorage.setItem('sym',cur);localStorage.setItem('theme',theme)}catch{}};
 
 function list(){
   $('list').innerHTML=PAIRS.map(p=>`<button class="item ${p.s===cur?'on':''}" data-s="${p.s}">${p.n}<small>${p.d}</small></button>`).join('');
 }
 function mount(){
   $('tv').innerHTML='';
+  const dark=theme==='dark';
   new TradingView.widget({
-    autosize:true,symbol:cur,interval:'60',timezone:'Etc/UTC',theme:'dark',style:'1',locale:'en',
+    autosize:true,symbol:cur,interval:'60',timezone:'Etc/UTC',theme:theme,style:'1',locale:'en',
     enable_publishing:false,allow_symbol_change:false,withdateranges:true,save_image:true,
-    toolbar_bg:'#07010f',container_id:'tv',
-    loading_screen:{backgroundColor:'#07010f',foregroundColor:'#00f0ff'},
-    overrides:{
-      'paneProperties.background':'#07010f','paneProperties.backgroundType':'solid',
-      'paneProperties.vertGridProperties.color':'rgba(0,240,255,0.06)',
-      'paneProperties.horzGridProperties.color':'rgba(0,240,255,0.06)',
-      'scalesProperties.textColor':'#9ad9e0','scalesProperties.lineColor':'#2b1450',
-      'mainSeriesProperties.candleStyle.upColor':'#00f0ff','mainSeriesProperties.candleStyle.downColor':'#ff2a6d',
-      'mainSeriesProperties.candleStyle.borderUpColor':'#00f0ff','mainSeriesProperties.candleStyle.borderDownColor':'#ff2a6d',
-      'mainSeriesProperties.candleStyle.wickUpColor':'#00f0ff','mainSeriesProperties.candleStyle.wickDownColor':'#ff2a6d'
+    toolbar_bg:dark?'#000000':'#ffffff',container_id:'tv',
+    loading_screen:{backgroundColor:dark?'#000000':'#ffffff'},
+    overrides:dark?{
+      'paneProperties.background':'#000000','paneProperties.backgroundType':'solid',
+      'paneProperties.vertGridProperties.color':'#141414','paneProperties.horzGridProperties.color':'#141414',
+      'scalesProperties.lineColor':'#1f1f1f'
+    }:{
+      'paneProperties.background':'#ffffff','paneProperties.backgroundType':'solid'
     }
   });
 }
-$('list').onclick=e=>{
-  const b=e.target.closest('.item');if(!b)return;
-  cur=b.dataset.s;try{localStorage.setItem('sym',cur)}catch{}
-  list();mount();
-};
-list();mount();
+function apply(){
+  document.documentElement.dataset.theme=theme;
+  document.querySelector('meta[name=theme-color]').content=dark=theme==='dark'?'#000000':'#ffffff';
+  $('theme').textContent=theme==='dark'?'Light':'Dark';
+  list();save();
+}
+$('list').onclick=e=>{const b=e.target.closest('.item');if(b){cur=b.dataset.s;apply();mount()}};
+$('theme').onclick=()=>{theme=theme==='dark'?'light':'dark';apply();mount()};
+apply();mount();
 
 /* PWA */
 if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
@@ -113,14 +116,10 @@ ib.onclick=async()=>{
   else toast('Tap Share, then "Add to Home Screen"');
 };
 
-/* iOS home-screen icon (generated, no PNG file needed) */
+/* Solid black iOS icon */
 (function(){
-  const c=document.createElement('canvas');c.width=c.height=180;const x=c.getContext('2d');
-  x.fillStyle='#07010f';x.fillRect(0,0,180,180);x.lineWidth=8;x.lineJoin='round';x.lineCap='round';
-  x.strokeStyle='#00f0ff';x.shadowColor='#00f0ff';x.shadowBlur=14;
-  x.beginPath();x.moveTo(40,130);x.lineTo(40,50);x.lineTo(140,130);x.lineTo(140,50);x.stroke();
-  x.strokeStyle='#ff2a6d';x.shadowColor='#ff2a6d';
-  x.beginPath();x.moveTo(30,150);x.lineTo(150,150);x.stroke();
+  const c=document.createElement('canvas');c.width=c.height=180;
+  const x=c.getContext('2d');x.fillStyle='#000';x.fillRect(0,0,180,180);
   const l=document.createElement('link');l.rel='apple-touch-icon';l.href=c.toDataURL('image/png');document.head.append(l);
 })();
 </script>
